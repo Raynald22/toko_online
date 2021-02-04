@@ -18,7 +18,7 @@
 									<th class="column-1">No.</th>
 									<th class="column-2">Product</th>
 									<th class="column-3">Price</th>
-									<th class="column-4 p-l-70">Quantity</th>
+									<th class="column-4">Quantity</th>
 									<th class="column-5">Subtotal</th>
 								</tr>
 
@@ -30,17 +30,9 @@
 											<td class="column-1 product-remove"><a href="#" class="remove-item" data-rowid="<?php echo $item['rowid']; ?>"><i class="fa fa-trash"></i></a></td>
 											<td class="column-2 product-name"><?= $item['name'] ?></td>
 											<td class="column-3 price">Rp.<?= number_format($item['price'], 0, ',', '.')  ?></td>
-											<td class="column-4">
-												<div class="flex-w bo5 of-hidden w-size17">
-													<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
-														<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-													</button>
-
+											<td class="column-4 quantity">
+												<div class="flex-w bo5 of-hidden w-size17 input-group">
 													<input class="size8 m-text18 t-center num-product quantity input-number" type="number" name="quantity[<?php echo $item['rowid']; ?>]" value="<?php echo $item['qty']; ?>" min="1" max="100">
-
-													<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
-														<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-													</button>
 												</div>
 											</td>
 											<td class="column-5 total">Rp.<?= number_format($item['subtotal'], 0, ',', '.')  ?></td>
@@ -68,6 +60,13 @@
 							<a href="<?= base_url('dashboard') ?>" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
 								Continue to shop
 							</a>
+						</div>
+						<div class="size12 trans-0-4 m-t-10 m-b-10">
+							<!-- Button -->
+							<button href="<?= base_url('shop/cart') ?>" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" value="update">
+								Update
+							</button>
+
 						</div>
 
 					</div>
@@ -117,7 +116,7 @@
 						</div>
 						<div class="size15 trans-0-4 mb-5">
 							<!-- Button -->
-							<button type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+							<button type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4 btn btn-primary">
 								Proceed to Checkout
 							</button>
 						</div>
@@ -144,7 +143,7 @@
 			var rowid = $(this).data('rowid');
 			var tr = $('.cart-' + rowid);
 
-			$('.product-name', tr).html('<i class="fa fa-spin fa-spinner"></i> Menghapus...');
+			$('.product-name', tr).html('<i class="fa fa-spin fa-spinner"></i> Deleting...');
 
 			$.ajax({
 				method: 'POST',
@@ -167,4 +166,75 @@
 				}
 			})
 		})
+	</script>
+
+	<script>
+		window.onbeforeunload = function() {
+			$('.back').submit();
+			return redirect('shop/cart');
+		};
+	</script>
+
+	<script>
+		toastr.options = {
+			"closeButton": false,
+			"debug": false,
+			"newestOnTop": false,
+			"progressBar": false,
+			"positionClass": "toast-top-right",
+			"preventDuplicates": false,
+			"onclick": null,
+			"showDuration": "300",
+			"hideDuration": "1000",
+			"timeOut": "5000",
+			"extendedTimeOut": "1000",
+			"showEasing": "swing",
+			"hideEasing": "linear",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		}
+
+		$.ajax({
+			method: 'GET',
+			url: '<?php echo site_url('shop/cart_api?action=cart_info'); ?>',
+			success: function(res) {
+				var data = res.data;
+
+				var total_item = data.total_item;
+				$('.cart-item-total').text(total_item);
+			}
+		});
+
+		$('.add-cart').click(function(e) {
+			e.preventDefault();
+
+			var id = $(this).data('id');
+			var sku = $(this).data('sku');
+			var qty = $(this).data('qty');
+			qty = (qty > 0) ? qty : 1;
+			var price = $(this).data('price');
+			var name = $(this).data('name');
+
+			$.ajax({
+				method: 'POST',
+				url: '<?php echo site_url('shop/cart_api?action=add_item'); ?>',
+				data: {
+					id: id,
+					sku: sku,
+					qty: qty,
+					price: price,
+					name: name
+				},
+				success: function(res) {
+					if (res.code == 200) {
+						var totalItem = res.total_item;
+
+						$('.cart-item-total').text(totalItem);
+						toastr.info('Item ditambahkan dalam keranjang');
+					} else {
+						console.log('Terjadi kesalahan');
+					}
+				}
+			});
+		});
 	</script>

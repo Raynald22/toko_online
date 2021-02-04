@@ -65,6 +65,17 @@
 					<span>Customers</span></a>
 			</li>
 
+			<li class="nav-item">
+				<a class="nav-link" href="<?= base_url('admin/settings/profile') ?>">
+					<i class="fas fa-fw fa-user-cog"></i>
+					<span>Change Profile</span></a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" href="<?= base_url('admin/settings') ?>">
+					<i class="fas fa-fw fa-tools"></i>
+					<span>Settings</span></a>
+			</li>
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 

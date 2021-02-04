@@ -113,9 +113,10 @@ class Products extends CI_Controller
 		$product['flash'] = $this->session->flashdata('add_new_product_flash');
 		$product['categories'] = $this->product->get_all_categories();
 
-		$this->load->view('header', $params);
-		$this->load->view('products/add_new_product', $product);
-		$this->load->view('footer');
+		$this->load->view('templates/admin_header', $params);
+		$this->load->view('templates/admin_sidebar', $params);
+		$this->load->view('produk/add_new_product', $product);
+		$this->load->view('templates/admin_footer');
 	}
 
 	public function add_product()
@@ -141,7 +142,7 @@ class Products extends CI_Controller
 
 			$config['upload_path'] = './assets/uploads/products/';
 			$config['allowed_types'] = 'jpg|png|jpeg';
-			$config['max_size'] = 2048;
+			$config['max_size'] = 10096;
 
 			$this->load->library('upload', $config);
 
@@ -189,9 +190,10 @@ class Products extends CI_Controller
 			$product['product'] = $data;
 			$product['categories'] = $this->product->get_all_categories();
 
-			$this->load->view('header', $params);
-			$this->load->view('products/edit_product', $product);
-			$this->load->view('footer');
+			$this->load->view('templates/admin_header', $params);
+			$this->load->view('templates/admin_sidebar', $params);
+			$this->load->view('admin/edit_product', $product);
+			$this->load->view('templates/admin_footer');
 		} else {
 			show_404();
 		}
@@ -227,7 +229,7 @@ class Products extends CI_Controller
 
 			$config['upload_path'] = './assets/uploads/products/';
 			$config['allowed_types'] = 'jpg|png|jpeg';
-			$config['max_size'] = 2048;
+			$config['max_size'] = 7096;
 
 			$this->load->library('upload', $config);
 

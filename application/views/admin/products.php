@@ -3,16 +3,26 @@
 	<div class="container-fluid">
 
 		<!-- Page Heading -->
+		<!-- Header -->
+		<div class="header pb-6">
+			<div class="container-fluid">
+				<div class="header-body">
+					<div class="row align-items-center pb-4">
+						<div class="col-lg-6">
+							<h6 class="h2 text-white d-inline-block mb-0"></h6>
+						</div>
+						<div class="col-lg-6 text-right">
+							<a href="<?php echo site_url('admin/products/add_new_product'); ?>" class="btn btn-sm btn-primary">Tambah</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!-- DataTales Example -->
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-primary">Products</h6>
-				<?php if ($flash) : ?>
-					<span class="float-right text-success font-weight-bold" style="margin-top: -30px">
-						<?php echo $flash; ?>
-					</span>
-				<?php endif; ?>
 			</div>
 			<div class="card-body">
 				<?php if (count($products) > 0) : ?>

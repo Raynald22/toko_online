@@ -93,13 +93,13 @@
 							<div class="col-sm-12 col-md-6 col-lg-4 p-b-50 h-50">
 								<!-- Block2 -->
 								<div class="block2">
-									<div class="block2-img wrap-pic-w of-hidden pos-relative">
+									<div class="block2-img wrap-pic-w of-hidden pos-relative	">
 										<?php if ($prd->current_discount > 0) : ?>
 											<div class="block2-labelsale">
 
 											</div>
 										<?php endif; ?>
-										<img src="<?= base_url() . '/uploads/products/' . $prd->picture_name ?>" alt="IMG-PRODUCT">
+										<img src="<?= base_url() . '/assets/uploads/products/' . $prd->picture_name ?>" alt="IMG-PRODUCT">
 
 										<div class="block2-overlay trans-0-4">
 											<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
@@ -111,7 +111,7 @@
 												<?php if ($prd->stock > 0) : ?>
 													<a href="#" class="add-cart add-to-chart flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 mb-2" data-sku="<?php echo $prd->sku; ?>" data-name="<?php echo $prd->name; ?>" data-price="<?php echo ($prd->current_discount > 0) ? ($prd->price - $prd->current_discount) : $prd->price; ?>" data-id="<?php echo $prd->id; ?>">Add to Cart</a>
 												<?php else : ?>
-													<a class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 mb-2">
+													<a href="#" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 mb-2">
 														Out of stock
 													</a>
 												<?php endif; ?>

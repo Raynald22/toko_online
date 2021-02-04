@@ -1,5 +1,4 @@
-<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m"
-	style="background-image: url(<?= base_url() ?>assets/images/sepatu.jpg);">
+<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(<?= base_url() ?>assets/images/sepatu.jpg);">
 	<h2 class="l-text2 t-center">
 		Checkout
 	</h2>
@@ -7,27 +6,24 @@
 
 <section class="cart bgwhite p-t-70 p-b-100">
 	<div class="container">
-		<form action="<?php echo site_url('shop/checkout/order'); ?>" method="POST">
+		<form action="<?php echo base_url('shop/checkout/order'); ?>" method="POST">
 			<div class="row">
 				<div class="col-md-7">
 					<h3 class="mb-4 billing-heading">Alamat Pengiriman</h3>
 
 					<div class="form-group">
 						<label for="name" class="form-control-label">Pengiriman untuk (nama):</label>
-						<input type="text" name="name" value="<?php echo $customer->name; ?>" class="form-control"
-							id="name" required>
+						<input type="text" name="name" value="<?php echo $customer->name; ?>" class="form-control" id="name" required>
 					</div>
 
 					<div class="form-group">
 						<label for="hp" class="form-control-label">No. HP:</label>
-						<input type="text" name="phone_number" value="<?php echo $customer->phone_number; ?>"
-							class="form-control" id="hp" required>
+						<input type="text" name="phone_number" value="<?php echo $customer->phone_number; ?>" class="form-control" id="hp" required>
 					</div>
 
 					<div class="form-group">
 						<label for="address" class="form-control-label">Alamat:</label>
-						<textarea name="address" class="form-control" id="address"
-							required><?php echo $customer->address; ?></textarea>
+						<textarea name="address" class="form-control" id="address" required><?php echo $customer->address; ?></textarea>
 					</div>
 
 					<div class="form-group">
@@ -66,8 +62,8 @@
 						<div class="form-group">
 							<div class="col-md-12">
 								<div class="radio">
-									<label><input type="radio" name="payment" class="mr-2" value="1"> 
-									Transfer bank
+									<label><input type="radio" name="payment" class="mr-2" value="1">
+										Transfer bank
 									</label>
 								</div>
 							</div>

@@ -192,7 +192,7 @@ class Shop extends CI_Controller
 
 				$this->session->set_flashdata('order_flash', 'Order berhasil ditambahkan');
 
-				redirect('customer/orders/view/' . $order);
+				redirect('order/view/' . $order);
 				break;
 		}
 	}

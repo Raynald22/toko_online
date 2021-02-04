@@ -116,13 +116,20 @@
 					<a href="#" class="header-wrapicon1 dis-block">
 						<img src="<?= get_user_image(); ?>" class="header-icon1 img-profile rounded-circle" alt="ICON">
 					</a>
-					<div class="name_user ml-3">
+					<div class="name_user ml-2">
 						<a href="<?php echo site_url('customer'); ?>" class="d-block"><?php echo get_user_name(); ?></a>
 					</div>
 
-					<span class="linedivide1"></span>
+					<!-- <span class="linedivide1"></span> -->
+
+					<div class="ml-2 mr-2">|</div>
+
+					<a class="logout text-danger mr-3" href="<?php echo site_url('auth/logout'); ?>">Log Out</a>
+
+
 
 					<div class="header-wrapicon2">
+
 						<img src="<?= base_url() ?>assets/images/icons/icon-header-02.png" class="header-icon1" alt="ICON">
 						<a href="<?= site_url('shop/cart'); ?>" class="header-icons-noti icon-shopping_cart" style="background-color: red;">
 							<span class="cart-item-total">0</span>
