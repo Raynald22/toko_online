@@ -1,37 +1,29 @@
 <?php
 
-class Produk extends CI_Controller {
-    // Produk Index
-    public function index()
-    {
-        $data['barang'] = $this->model_barang->tampil_data()->result();
-        $this->load->view('templates/header'); //memanggil view header.php
-        $this->load->view('produk/produk', $data); //memanggil view produk.php
-        $this->load->view('templates/produk_footer'); //memanggil view footer.php
-	}
-	
-	public function tambah_ke_keranjang($id)
+class Produk extends CI_Controller
+{
+
+	public function __construct()
 	{
-		$barang = $this->model_barang->find($id);
+		parent::__construct();
 
-		$data = array(
-			'id' => $barang->id_barang,
-			'qty' => 1,
-			'price' => $barang->harga,
-			'name' => $barang->nama_barang,
-			'image' => $barang->gambar,
-		);
-
-		$this->cart->insert($data);
-		$data['image'] = $barang->gambar;
-		redirect('produk');
+		$this->load->library('cart');
+		$this->load->model(array(
+			'Model_product' => 'product',
+			'Model_customer' => 'customer'
+		));
 	}
 
-	public function detail($id_barang)
+	// Produk Index
+	public function index()
 	{
-		$data['barang'] = $this->model_barang->detail_barang($id_barang);
-		$this->load->view('templates/header'); //memanggil view header.php
-        $this->load->view('produk/detail_barang', $data); //memanggil view produk.php
-        $this->load->view('templates/produk_footer'); //memanggil view footer.php
+		$data['title'] = 'Products';
+		$data['products'] = $this->product->get_all_products();
+
+		$products['best_deal'] = $this->product->best_deal_product();
+
+		$this->load->view('templates/header', $data); //memanggil view header.php
+		$this->load->view('produk/produk', $data); //memanggil view produk.php
+		$this->load->view('templates/produk_footer'); //memanggil view footer.php
 	}
 }

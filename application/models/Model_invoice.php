@@ -15,6 +15,7 @@ class Model_invoice extends CI_Model {
 			'batas_bayar' => date('Y-m-d H:i:s', mktime(date('H'),
 				date('i'), date('s') , date('m'), date('d') + 1, date('Y')
 		)),
+			'status' => 'Menunggu Pembayaran',
 		);
 		$this->db->insert('tb_invoice', $invoice);
 		$id_invoice = $this->db->insert_id();
@@ -25,7 +26,8 @@ class Model_invoice extends CI_Model {
 				'id_barang' => $item['id'],
 				'nama_barang' => $item['name'],
 				'jumlah' => $item['qty'],
-				'harga' => $item['price']
+				'harga' => $item['price'],
+				'status' => $item['status'],
 			);
 
 			$this->db->insert('tb_pesanan', $data);

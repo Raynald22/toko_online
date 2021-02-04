@@ -56,7 +56,7 @@
                                         });
                                     </script>
                                 <?php endif; ?>
-                                <form method="POST" action="<?= base_url('auth') ?>">
+                                <form method="POST" action="<?= base_url('auth/login/do_login') ?>">
                                     <div class="form-label-group">
                                         <label><i class="fas fa-user"></i>Username</label>
                                         <input type="text" id="username" class="form-control" name="username" value="<?= set_value('username') ?>" />
@@ -73,7 +73,7 @@
                                     </button>
                                     <div>
                                         <p class="small">
-                                            Already have an account ? <a href="<?= base_url('auth/registration') ?>">Register</a>
+                                            Already have an account ? <a href="<?= base_url('auth/register') ?>">Register</a>
                                         </p>
                                     </div>
                                 </form>

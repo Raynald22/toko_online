@@ -175,14 +175,14 @@
 
 
 
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/bootstrap/js/popper.js"></script>
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/select2/select2.min.js"></script>
 	<script type="text/javascript">
 		$(".selection-1").select2({
@@ -195,51 +195,120 @@
 			dropdownParent: $('#dropDownSelect2')
 		});
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/daterangepicker/moment.min.js"></script>
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/slick/slick.min.js"></script>
 	<script type="text/javascript" src="<?= base_url() ?>assets/js/slick-custom.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/sweetalert/sweetalert.min.js"></script>
-	<script type="text/javascript">
+	<script src="<?php echo base_url('assets/js/toastr/toastr.min.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/js/aos.js'); ?>"></script>
 
-		$('.block2-btn-addwishlist').each(function(){
+	<script type="text/javascript">
+		$('.block2-btn-addwishlist').each(function() {
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-			$(this).on('click', function(){
+			$(this).on('click', function() {
 				swal(nameProduct, "is added to wishlist !", "success");
 			});
 		});
 	</script>
 
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/noui/nouislider.min.js"></script>
 	<script type="text/javascript">
 		/*[ No ui ]
 	    ===========================================================*/
-	    var filterBar = document.getElementById('filter-bar');
+		var filterBar = document.getElementById('filter-bar');
 
-	    noUiSlider.create(filterBar, {
-	        start: [ 50, 200 ],
-	        connect: true,
-	        range: {
-	            'min': 50,
-	            'max': 200
-	        }
-	    });
+		noUiSlider.create(filterBar, {
+			start: [50, 200],
+			connect: true,
+			range: {
+				'min': 50,
+				'max': 200
+			}
+		});
 
-	    var skipValues = [
-	    document.getElementById('value-lower'),
-	    document.getElementById('value-upper')
-	    ];
+		var skipValues = [
+			document.getElementById('value-lower'),
+			document.getElementById('value-upper')
+		];
 
-	    filterBar.noUiSlider.on('update', function( values, handle ) {
-	        skipValues[handle].innerHTML = Math.round(values[handle]) ;
-	    });
+		filterBar.noUiSlider.on('update', function(values, handle) {
+			skipValues[handle].innerHTML = Math.round(values[handle]);
+		});
 	</script>
-<!--===============================================================================================-->
-	<script src="<?= base_url() ?>assets/js/main.js"></script>
 
-</body>
-</html>
+	<script>
+		toastr.options = {
+			"closeButton": false,
+			"debug": false,
+			"newestOnTop": false,
+			"progressBar": false,
+			"positionClass": "toast-top-right",
+			"preventDuplicates": false,
+			"onclick": null,
+			"showDuration": "300",
+			"hideDuration": "1000",
+			"timeOut": "5000",
+			"extendedTimeOut": "1000",
+			"showEasing": "swing",
+			"hideEasing": "linear",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		}
+
+		$.ajax({
+			method: 'GET',
+			url: '<?php echo site_url('shop/cart_api?action=cart_info'); ?>',
+			success: function(res) {
+				var data = res.data;
+
+				var total_item = data.total_item;
+				$('.cart-item-total').text(total_item);
+			}
+		});
+
+		$('.add-cart').click(function(e) {
+			e.preventDefault();
+
+			var id = $(this).data('id');
+			var sku = $(this).data('sku');
+			var qty = $(this).data('qty');
+			qty = (qty > 0) ? qty : 1;
+			var price = $(this).data('price');
+			var name = $(this).data('name');
+
+			$.ajax({
+				method: 'POST',
+				url: '<?php echo site_url('shop/cart_api?action=add_item'); ?>',
+				data: {
+					id: id,
+					sku: sku,
+					qty: qty,
+					price: price,
+					name: name
+				},
+				success: function(res) {
+					if (res.code == 200) {
+						var totalItem = res.total_item;
+
+						$('.cart-item-total').text(totalItem);
+						toastr.info('Item ditambahkan dalam keranjang');
+					} else {
+						console.log('Terjadi kesalahan');
+					}
+				}
+			});
+		});
+	</script>
+	<!--===============================================================================================-->
+	<script src="<?= base_url() ?>assets/js/main.js"></script>
+	<script src="<?= base_url() ?>assets/js/asset_toko/main.js"></script>
+
+
+	</body>
+
+	</html>

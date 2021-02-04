@@ -17,27 +17,44 @@
                                         });
                                     </script>
                                 <?php endif; ?>
-                                <form method="POST" action="<?= base_url('auth/registration') ?>">
+                                <form method="POST" action="<?= base_url('auth/register/verify') ?>">
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="nama">Nama</label>
-                                            <input id="nama" type="text" class="form-control" name="nama" autofocus value="<?= set_value('nama') ?>" />
-                                            <?= form_error('nama', '<div class="text-small text-danger">', '</div>') ?>
-                                        </div>
-                                        <div class="form-group col-6">
                                             <label for="username">Username</label>
-                                            <input id="username" type="text" class="form-control" name="username" value="<?= set_value('username') ?>" />
+                                            <input id="username" type="text" class="form-control" name="username" autofocus value="<?= set_value('username') ?>" />
                                             <?= form_error('username', '<div class="text-small text-danger">', '</div>') ?>
                                         </div>
+                                        <div class="form-group col-6">
+                                            <label for="password">Password</label>
+                                            <input id="password" type="password" class="form-control" name="password" value="<?= set_value('password') ?>" />
+                                            <?= form_error('password', '<div class="text-small text-danger">', '</div>') ?>
+                                        </div>
                                     </div>
+									
+									<div class="form-group">
+										<label>Nama Lengkap</label>
+										<input type="text" id="name" name="name" class="form-control" />
+
+										<?= form_error('name', '<div class="text-small text-danger">', '</div>') ?>
+									</div>
 
 									<div class="row">
                                         <div class="form-group col-6">
-                                            <label>Password</label>
-                                            <input type="password" id="password" name="password" class="form-control" />
-
-                                            <?= form_error('password', '<div class="text-small text-danger">', '</div>') ?>
+                                            <label for="phone_number">No. Hp</label>
+                                            <input id="phone_number" type="text" class="form-control" name="phone_number" autofocus value="<?= set_value('phone_number') ?>" />
+                                            <?= form_error('phone_number', '<div class="text-small text-danger">', '</div>') ?>
                                         </div>
+                                        <div class="form-group col-6">
+                                            <label for="email">Email</label>
+                                            <input id="email" type="text" class="form-control" name="email" value="<?= set_value('email') ?>" />
+                                            <?= form_error('email', '<div class="text-small text-danger">', '</div>') ?>
+                                        </div>
+                                    </div>
+
+									<div class="form-group">
+										<label>Alamat</label>
+										<input type="text" id="address" name="address" class="form-control"  value="<?= set_value('address') ?>" />
+										<?= form_error('address', '<div class="text-small text-danger">', '</div>') ?>
 									</div>
 
                                     <button class="btn1 text-uppercase mb-4" style="width: 100%;" type="submit">

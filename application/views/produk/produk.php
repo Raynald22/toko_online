@@ -89,53 +89,79 @@
 
 					<!-- Product -->
 					<div class="row">
-					<?php foreach ($barang as $brg) : ?>
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50 h-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-									<img src="<?= base_url(). '/uploads/'.$brg->gambar ?>" alt="IMG-PRODUCT">
+						<?php foreach ($products as $prd) : ?>
+							<div class="col-sm-12 col-md-6 col-lg-4 p-b-50 h-50">
+								<!-- Block2 -->
+								<div class="block2">
+									<div class="block2-img wrap-pic-w of-hidden pos-relative">
+										<?php if ($prd->current_discount > 0) : ?>
+											<div class="block2-labelsale">
 
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
+											</div>
+										<?php endif; ?>
+										<img src="<?= base_url() . '/uploads/products/' . $prd->picture_name ?>" alt="IMG-PRODUCT">
 
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<?php if($brg->stok > 0){
-												echo anchor('dashboard/tambah_ke_keranjang/'.$brg->id_barang, '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 mb-2">
-												Add to Cart
-											</button>');
-											}else{
-												echo '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 mb-2">
-												Out of stock
-											</button>';
-											} ?>
+										<div class="block2-overlay trans-0-4">
+											<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+												<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+												<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+											</a>
 
-											<?= anchor('produk/detail/'.$brg->id_barang, '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 mb-2">
+											<div class="block2-btn-addcart w-size1 trans-0-4">
+												<?php if ($prd->stock > 0) : ?>
+													<a href="#" class="add-cart add-to-chart flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 mb-2" data-sku="<?php echo $prd->sku; ?>" data-name="<?php echo $prd->name; ?>" data-price="<?php echo ($prd->current_discount > 0) ? ($prd->price - $prd->current_discount) : $prd->price; ?>" data-id="<?php echo $prd->id; ?>">Add to Cart</a>
+												<?php else : ?>
+													<a class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 mb-2">
+														Out of stock
+													</a>
+												<?php endif; ?>
+
+												<?= anchor('shop/product/' . $prd->id . '/' . $prd->sku, '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 mb-2">
 												Detail
-											</button>') ?> 
+											</button>') ?>
+
+											</div>
 										</div>
 									</div>
-								</div>
 
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										<?= $brg->nama_barang ?>
-									</a>
+									<div class="block2-txt p-t-20">
+										<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+											<?= $prd->name ?>
+										</a>
+										<!--Jika ada diskon -->
+										<?php if ($prd->current_discount > 0) : ?>
+											<span class="block2-oldprice m-text7 p-r-5">
+												<!-- Price yang sebenarnya -->
+												Rp <?php echo format_rupiah($prd->price); ?>
+											</span>
 
-									<span class="block2-price p-r-5">
-										Rp. <?= number_format($brg->harga, 0,',','.')  ?>
-									</span>
-									<span class="block2-price m-text6 p-r-5 ml-5">
-										Stok :
-										<?= $brg->stok ?>
-									</span>
+											<span class="block2-newprice m-text8 p-r-5">
+												<!--Price setelah di diskon -->
+												Rp <?php echo format_rupiah($prd->price - $prd->current_discount); ?>
+											</span>
+											<!--Jika tidak ada diskon -->
+										<?php else : ?>
+											<span class="block2-price p-r-5">
+												<!--Jika ada diskon -->
+												Rp <?php echo format_rupiah($prd->price - $prd->current_discount); ?>
+											</span>
+										<?php endif; ?>
+
+										<span class="block2-name dis-block	 mt-1">
+											Stok :
+											<?= $prd->stock ?>
+										</span>
+
+										<?php if ($prd->current_discount > 0) : ?>
+											<span class="block2-name dis-block s-text3 mt-1" style="color: red;">
+												Discount <?php echo count_percent_discount($prd->current_discount, $prd->price, 0); ?>%
+											</span>
+										<?php endif; ?>
+
+
+									</div>
 								</div>
 							</div>
-						</div>
 						<?php endforeach; ?>
 					</div>
 
@@ -150,4 +176,66 @@
 	</section>
 
 
-	
+	<script>
+		toastr.options = {
+			"closeButton": false,
+			"debug": false,
+			"newestOnTop": false,
+			"progressBar": false,
+			"positionClass": "toast-top-right",
+			"preventDuplicates": false,
+			"onclick": null,
+			"showDuration": "300",
+			"hideDuration": "1000",
+			"timeOut": "5000",
+			"extendedTimeOut": "1000",
+			"showEasing": "swing",
+			"hideEasing": "linear",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		}
+
+		$.ajax({
+			method: 'GET',
+			url: '<?php echo site_url('shop/cart_api?action=cart_info'); ?>',
+			success: function(res) {
+				var data = res.data;
+
+				var total_item = data.total_item;
+				$('.cart-item-total').text(total_item);
+			}
+		});
+
+		$('.add-cart').click(function(e) {
+			e.preventDefault();
+
+			var id = $(this).data('id');
+			var sku = $(this).data('sku');
+			var qty = $(this).data('qty');
+			qty = (qty > 0) ? qty : 1;
+			var price = $(this).data('price');
+			var name = $(this).data('name');
+
+			$.ajax({
+				method: 'POST',
+				url: '<?php echo site_url('shop/cart_api?action=add_item'); ?>',
+				data: {
+					id: id,
+					sku: sku,
+					qty: qty,
+					price: price,
+					name: name
+				},
+				success: function(res) {
+					if (res.code == 200) {
+						var totalItem = res.total_item;
+
+						$('.cart-item-total').text(totalItem);
+						toastr.info('Item ditambahkan dalam keranjang');
+					} else {
+						console.log('Terjadi kesalahan');
+					}
+				}
+			});
+		});
+	</script>

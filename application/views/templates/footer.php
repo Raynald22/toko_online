@@ -198,6 +198,9 @@
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/lightbox2/js/lightbox.min.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/sweetalert/sweetalert.min.js"></script>
+	<script src="<?php echo base_url('assets/js/toastr/toastr.min.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/js/aos.js'); ?>"></script>
+
 	<script type="text/javascript">
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
@@ -221,10 +224,76 @@
 		});
 	</script>
 
+<script>
+  toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
+  $.ajax({
+    method: 'GET',
+    url: '<?php echo site_url('shop/cart_api?action=cart_info'); ?>',
+    success: function (res) {
+      var data = res.data;
+
+      var total_item = data.total_item;
+      $('.cart-item-total').text(total_item);
+    }
+  });
+
+  $('.add-cart').click(function(e) {
+    e.preventDefault();
+
+    var id = $(this).data('id');
+    var sku = $(this).data('sku');
+    var qty = $(this).data('qty');
+    qty = (qty > 0) ? qty : 1;
+    var price = $(this).data('price');
+    var name = $(this).data('name');
+
+    $.ajax({
+      method: 'POST',
+      url: '<?php echo site_url('shop/cart_api?action=add_item'); ?>',
+      data: {
+        id: id,
+        sku: sku,
+        qty: qty,
+        price: price,
+        name: name
+      },
+      success: function (res) {
+        if (res.code == 200) {
+          var totalItem = res.total_item;
+
+          $('.cart-item-total').text(totalItem);
+          toastr.info('Item ditambahkan dalam keranjang');
+        }
+        else {
+          console.log('Terjadi kesalahan');
+        }
+      }
+    });
+  });
+</script>
+
 <!--===============================================================================================-->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
 	<script src="<?= base_url() ?>assets/js/map-custom.js"></script>
 	<script src="<?= base_url() ?>assets/js/main.js"></script>
+	<script src="<?= base_url() ?>assets/js/asset_toko/main.js"></script>
 
 </body>
 </html>
