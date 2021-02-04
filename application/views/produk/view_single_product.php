@@ -7,7 +7,7 @@
 				<div class="slick3">
 					<div class="item-slick3" data-thumb="images/thumb-item-01.jpg">
 						<div class="wrap-pic-w">
-							<img src="<?= base_url() . 'assets/uploads/products/' . $product->picture_name ?>" alt="IMG-PRODUCT">
+							<img src="<?= base_url() . '/assets/uploads/products/' . $product->picture_name ?>" alt="IMG-PRODUCT">
 						</div>
 					</div>
 				</div>
@@ -38,23 +38,25 @@
 			<div class="p-t-33 p-b-60">
 				<div class="flex-w p-t-10">
 					<div class="w-size16 flex-m flex-w">
-						<div class="flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10">
-							<button type="button" class="btn-num-product-down color1 flex-c-m size7 bg8 eff2 quantity-left-minus btn" data-type="minus" data-field="">
-								<i class="fs-12 fa fa-minus"></i>
-							</button>
-
-							<input class="size8 m-text18 t-center num-product quantity input-number form-control input-number" type="number" id="quantity" name="quantity" value="1" min="1" max="100">
-
-							<button type="button" class="btn-num-product-up color1 flex-c-m size7 bg8 eff2 quantity-right-plus btn" data-type="plus" data-field="">
-								<i class="fs-12 fa fa-plus"></i>
-							</button>
+						<div class="input-group col-md-6 d-flex mb-3 mt-2">
+							<span class="input-group-btn">
+								<button type="button" class="quantity-left-minus btn btn-num-product-down color1 flex-c-m size7 bg8 eff2" data-type="minus" data-field="">
+									<i class="fa fa-minus"></i>
+								</button>
+							</span>
+							<input type="text" id="quantity" name="quantity" class="form-control input-number size8 m-text18 t-center num-product" value="1" min="1" max="100">
+							<span class="input-group-btn">
+								<button type="button" class="quantity-right-plus btn btn-num-product-up color1 flex-c-m size7 bg8 eff2" data-type="plus" data-field="">
+									<i class="fa fa-plus"></i>
+								</button>
+							</span>
 						</div>
 
-						<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
+						<div class="btn-addcart-product-detail size9 trans-0-4 m-b-10">
 							<!-- Button -->
 
 							<?php if ($product->stock > 0) : ?>
-								<a href="#" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 mb-2 add-cart card-btn" data-sku="<?php echo $product->sku; ?>" data-name="<?php echo $product->name; ?>" data-price="<?php echo ($product->current_discount > 0) ? ($product->price - $product->current_discount) : $product->price; ?>" data-id="<?php echo $product->id; ?>">Add to Cart</a>
+								<a href="#" class="btn btn-black btn-sm py-3 px-5 add-cart cart-btn flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" data-sku="<?php echo $product->sku; ?>" data-name="<?php echo $product->name; ?>" data-price="<?php echo ($product->current_discount > 0) ? ($product->price - $product->current_discount) : $product->price; ?>" data-id="<?php echo $product->id; ?>">Add to Cart</a>
 							<?php else : ?>
 								<a class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 mb-2">
 									Out of stock
@@ -142,7 +144,7 @@
 
 										</div>
 									<?php endif; ?>
-									<img src="<?= base_url() . '/uploads/products/' . $product->picture_name ?>" alt="IMG-PRODUCT">
+									<img src="<?= base_url() . 'assets/uploads/products/' . $product->picture_name ?>" alt="IMG-PRODUCT">
 
 									<div class="block2-overlay trans-0-4">
 										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">

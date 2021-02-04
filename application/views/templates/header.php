@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title><?php echo $title; ?> | <?php echo get_store_name(); ?></title>
+	<title><?php echo $title; ?></title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -38,6 +38,7 @@
 	<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/util.css">
 	<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/main.css">
 	<script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
+	<script src="<?= base_url() ?>assets/asset_customer/js/jquery-3.2.1.min.js"></script>
 	<script src="<?php echo base_url('assets/js/jquery-migrate-3.0.1.min.js'); ?>"></script>
 	<!--===============================================================================================-->
 </head>

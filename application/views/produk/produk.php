@@ -93,7 +93,7 @@
 							<div class="col-sm-12 col-md-6 col-lg-4 p-b-50 h-50">
 								<!-- Block2 -->
 								<div class="block2">
-									<div class="block2-img wrap-pic-w of-hidden pos-relative	">
+									<div class="block2-img wrap-pic-w of-hidden pos-relative">
 										<?php if ($prd->current_discount > 0) : ?>
 											<div class="block2-labelsale">
 

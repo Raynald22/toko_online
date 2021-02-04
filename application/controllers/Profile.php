@@ -40,6 +40,7 @@ class Profile extends CI_Controller
 			$data->name = $this->input->post('name');
 			$data->phone_number = $this->input->post('phone_number');
 			$data->address = $this->input->post('address');
+			$data->profile_picture = $this->input->post('profile_picture');
 
 			$profile = $this->profile->get_profile();
 			$old_profile = $profile->profile_picture;
@@ -102,7 +103,7 @@ class Profile extends CI_Controller
 			$this->session->set_flashdata('profile', $flash_message);
 			$this->session->set_flashdata('show_tab', 'akun');
 
-			redirect('customer/profile');
+			redirect('profile');
 		}
 	}
 
@@ -122,7 +123,7 @@ class Profile extends CI_Controller
 			$this->session->set_flashdata('profile', $flash_message);
 			$this->session->set_flashdata('show_tab', 'email');
 
-			redirect('customer/profile');
+			redirect('profile');
 		}
 	}
 }

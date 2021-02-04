@@ -176,7 +176,7 @@
 
 
 	<!--===============================================================================================-->
-	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="<?= base_url() ?>assets/asset_customer/js/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/animsition/js/animsition.min.js"></script>
 	<!--===============================================================================================-->
@@ -198,13 +198,16 @@
 	<!--===============================================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/daterangepicker/moment.min.js"></script>
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/daterangepicker/daterangepicker.js"></script>
-	<!--===============================================================================================-->
+	<!--=================	==============================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/slick/slick.min.js"></script>
 	<script type="text/javascript" src="<?= base_url() ?>assets/js/slick-custom.js"></script>
 	<!--===============================================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/sweetalert/sweetalert.min.js"></script>
 	<script src="<?php echo base_url('assets/js/toastr/toastr.min.js'); ?>"></script>
 	<script src="<?php echo base_url('assets/js/aos.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/asset_customer/js/scrollax.min.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/asset_customer/js/main2.js'); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('assets/asset_customer/js/jquery.stellar.min.js'); ?>"></script>
 
 	<script type="text/javascript">
 		$('.block2-btn-addwishlist').each(function() {
@@ -306,7 +309,6 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="<?= base_url() ?>assets/js/main.js"></script>
-	<script src="<?= base_url() ?>assets/js/asset_toko/main.js"></script>
 
 
 	</body>
