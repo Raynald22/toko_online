@@ -25,7 +25,7 @@ class Profile extends CI_Controller
 
 		$this->load->view('templates/header', $params);
 		$this->load->view('customer/profile', $user);
-		$this->load->view('templates/footer');
+		$this->load->view('templates/footeree');
 	}
 
 	public function edit_name()
