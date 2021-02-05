@@ -7,6 +7,8 @@ class Shop extends CI_Controller
 	{
 		parent::__construct();
 
+		verify_session('customer');
+
 		$this->load->library('cart');
 		$this->load->model(array(
 			'Model_product' => 'product',
@@ -58,7 +60,7 @@ class Shop extends CI_Controller
 			$this->session->set_userdata('_temp_coupon', $coupon);
 			$this->session->set_userdata('_temp_quantity', $quantity);
 
-			verify_session('customer');
+			verify_session('customer'); //verifikasi jika user login atau belum
 		}
 		switch ($action) {
 			default:
@@ -123,13 +125,12 @@ class Shop extends CI_Controller
 				$params['discount'] = $disc;
 				$data['title'] = 'Checkout';
 
-
 				$this->session->set_userdata('order_quantity', $items);
 				$this->session->set_userdata('total_price', $params['total']);
 
 
 				$this->load->view('templates/header', $data); //memanggil view header.php
-				$this->load->view('produk/checkout', $params); //memanggil view produk.php
+				$this->load->view('produk/checkout', $params, $data); //memanggil view produk.php
 				$this->load->view('templates/footer'); //memanggil view footer.php
 				break;
 			case 'order':
@@ -218,7 +219,25 @@ class Shop extends CI_Controller
 				$this->cart->insert($item);
 				$total_item = count($this->cart->contents());
 
-				$response = array('code' => 200, 'message' => 'Item dimasukkan dalam keranjang', 'total_item' => $total_item);
+				$response = array('code' => 200, 'message' => 'Item added to cart', 'total_item' => $total_item);
+				break;
+			case 'update_item':
+				$id = $this->input->post('id');
+				$qty = $this->input->post('qty');
+				$sku = $this->input->post('sku');
+				$name = $this->input->post('name');
+				$price = $this->input->post('price');
+
+				$item = array(
+					'id' => $id,
+					'qty' => $qty,
+					'price' => $price,
+					'name' => $name
+				);
+				$this->cart->insert($item);
+				$total_item = count($this->cart->contents());
+
+				$response = array('code' => 200, 'message' => 'Item di update', 'total_item' => $total_item);
 				break;
 			case 'display_cart':
 				$carts = [];
@@ -250,7 +269,7 @@ class Shop extends CI_Controller
 				$total_price = $this->cart->total();
 				$ongkir = (int) ($total_price >= get_settings('min_shop_to_free_shipping_cost')) ? 0 : get_settings('shipping_cost');
 				$data['code'] = 204;
-				$data['message'] = 'Item dihapus dari keranjang';
+				$data['message'] = 'Item deleted';
 				$data['total']['subtotal'] = 'Rp ' . format_rupiah($total_price);
 				$data['total']['ongkir'] = ($ongkir > 0) ? 'Rp ' . format_rupiah($ongkir) : 'Gratis';
 				$data['total']['total'] = 'Rp ' . format_rupiah($total_price + $ongkir);

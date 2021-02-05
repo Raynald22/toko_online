@@ -198,7 +198,7 @@
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/lightbox2/js/lightbox.min.js"></script>
 	<!--===============================================================================================-->
 	<script type="text/javascript" src="<?= base_url() ?>assets/vendor/sweetalert/sweetalert.min.js"></script>
-	<script src="<?php echo base_url('assets/js/toastr/toastr.min.js'); ?>"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script src="<?php echo base_url('assets/js/aos.js'); ?>"></script>
 
 	<script type="text/javascript">
@@ -234,7 +234,7 @@
 			"preventDuplicates": false,
 			"onclick": null,
 			"showDuration": "300",
-			"hideDuration": "1000",
+			"hideDuration": "500",
 			"timeOut": "5000",
 			"extendedTimeOut": "1000",
 			"showEasing": "swing",

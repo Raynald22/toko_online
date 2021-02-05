@@ -26,6 +26,27 @@ class Model_order extends CI_Model
 		return $this->db->where(array('user_id' => $id, 'order_status' => 2))->get('orders')->num_rows();
 	}
 
+	public function count_shipping_order()
+	{
+		$id = $this->user_id;
+
+		return $this->db->where(array('user_id' => $id, 'order_status' => 3))->get('orders')->num_rows();
+	}
+
+	public function count_delivered_order()
+	{
+		$id = $this->user_id;
+
+		return $this->db->where(array('user_id' => $id, 'order_status' => 4))->get('orders')->num_rows();
+	}
+
+	public function count_cancelled_order()
+	{
+		$id = $this->user_id;
+
+		return $this->db->where(array('user_id' => $id, 'order_status' => 5))->get('orders')->num_rows();
+	}
+
 	public function get_all_orders($limit, $start)
 	{
 		$id = $this->user_id;

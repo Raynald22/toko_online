@@ -2,11 +2,13 @@
 
 class Contact extends CI_Controller
 {
-	// Produk Index
+	// Contact Index
 	public function index()
 	{
-		$this->load->view('templates/header'); //memanggil view header.php
-		$this->load->view('contact'); //memanggil view produk.php
+		$params['title'] = ('Contact Us');
+
+		$this->load->view('templates/header', $params); //memanggil view header.php
+		$this->load->view('contact', $params); //memanggil view contact.php
 		$this->load->view('templates/footer'); //memanggil view footer.php
 	}
 }

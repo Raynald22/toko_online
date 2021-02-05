@@ -89,7 +89,7 @@ class Payments extends CI_Controller
 
 		if ($action == 1) {
 			$status = 2;
-			$flash = 'Pembayaran berhasil dikonfirmasi';
+			$flash = 'Payment confirmation success';
 		} else if ($action == 2) {
 			$status = 3;
 			$flash = 'Pembayaran ditandai sebagai tidak ada';
@@ -102,8 +102,8 @@ class Payments extends CI_Controller
 		$this->session->set_flashdata('payment_flash', $flash);
 
 		if ($redir == 1)
-			redirect('admin/payments/view/' . $id);
+			redirect('admin/detail_payment/' . $id);
 
-		redirect('admin/orders/view/' . $order . '#payment_flash');
+		redirect('admin/detail_order/' . $order . '#payment_flash');
 	}
 }

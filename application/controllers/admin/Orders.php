@@ -90,6 +90,6 @@ class Orders extends CI_Controller
 		$this->order->set_status($status, $order);
 		$this->session->set_flashdata('order_flash', 'Status berhasil diperbarui');
 
-		redirect('admin/orders/view/' . $order);
+		redirect('admin/detail_order/' . $order);
 	}
 }

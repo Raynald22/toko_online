@@ -7,7 +7,7 @@ class Order extends CI_Controller
 	{
 		parent::__construct();
 
-		verify_session('customer');
+		verify_session('customer'); //cek jika sudah login atau belum
 
 		$this->load->model(array(
 			'Model_order' => 'order'
@@ -18,9 +18,9 @@ class Order extends CI_Controller
 	{
 		$params['title'] = 'My Order	';
 
-		$config['base_url'] = site_url('order/index');
-		$config['total_rows'] = $this->order->count_all_orders();
-		$config['per_page'] = 10;
+		$config['base_url'] = site_url('order');
+		$config['total_rows'] = $this->order->count_all_orders(); //total order
+		$config['per_page'] = 10; //total yang ditampilkan
 		$config['uri_segment'] = 4;
 		$choice = $config['total_rows'] / $config['per_page'];
 		$config['num_links'] = floor($choice);
@@ -47,22 +47,23 @@ class Order extends CI_Controller
 		$this->load->library('pagination', $config);
 		$page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 
-		$orders['orders'] = $this->order->get_all_orders($config['per_page'], $page);
-		$orders['pagination'] = $this->pagination->create_links();
+		//$config['per_page'] = maksimal 10 data yang ditampilkan
+		$orders['orders'] = $this->order->get_all_orders($config['per_page'], $page); //mendapatkan semua total order dari model order dengan function get_all_orders
+		$orders['pagination'] = $this->pagination->create_links(); //pagination
 
 		$this->load->view('templates/header', $params);
-		$this->load->view('template_customer/header');
 		$this->load->view('order/order', $orders);
-		$this->load->view('template_customer/footer', $params);
 		$this->load->view('templates/footer');
 	}
 
+	//function detail order
 	public function view($id = 0)
 	{
+		//jika data order ada
 		if ($this->order->is_order_exist($id)) {
 			$data = $this->order->order_data($id);
 			$items = $this->order->order_items($id);
-			$banks = json_decode(get_settings('payment_banks'));
+			$banks = json_decode(get_settings('payment_banks')); //data dalam bentuk json 
 			$banks = (array) $banks;
 
 			$params['title'] = 'Order #' . $data->order_number;
@@ -73,11 +74,9 @@ class Order extends CI_Controller
 			$order['banks'] = $banks;
 
 			$this->load->view('templates/header', $params);
-			$this->load->view('template_customer/header');
 			$this->load->view('order/view', $order);
-			$this->load->view('template_customer/footer', $params);
 			$this->load->view('templates/footer');
-		} else {
+		} else { //jika tidak ada
 			show_404();
 		}
 	}

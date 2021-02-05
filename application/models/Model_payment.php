@@ -19,6 +19,13 @@ class Model_payment extends CI_Model
 		return $this->db->join('orders', 'orders.id = payments.order_id')->where('orders.user_id', $id)->get('payments')->num_rows();
 	}
 
+	public function count_awaiting_payment()
+	{
+		$id = $this->user_id;
+
+		return $this->db->where(array('order_id' => $id, 'payment_status' => 1))->get('payments')->num_rows();
+	}
+
 	public function get_all_payments($limit, $start)
 	{
 		$id = $this->user_id;

@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/vendor/bootstrap/css/bootstrap.min.css">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link href="<?= base_url() ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/fonts/themify/themify-icons.css">
 	<!--===============================================================================================-->
@@ -31,17 +32,19 @@
 	<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/vendor/slick/slick.css">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/vendor/lightbox2/css/lightbox.min.css">
-	<link rel="stylesheet" href="<?php echo base_url('assets/js/toastr/toastr.min.css'); ?>">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/aos.css'); ?>">
 
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/util.css">
 	<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/main.css">
+	<link href="<?= base_url() ?>assets/asset_customer/css/sb-admin-2.min.css" rel="stylesheet">
 	<script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
 	<script src="<?= base_url() ?>assets/asset_customer/js/jquery-3.2.1.min.js"></script>
 	<script src="<?php echo base_url('assets/js/jquery-migrate-3.0.1.min.js'); ?>"></script>
 	<!--===============================================================================================-->
 </head>
+
 
 <body class="animsition">
 
@@ -51,11 +54,9 @@
 		<div class="container-menu-header">
 			<div class="topbar">
 				<div class="topbar-social">
-					<a href="#" class="topbar-social-item fa fa-facebook"></a>
-					<a href="#" class="topbar-social-item fa fa-instagram"></a>
-					<a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
-					<a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
-					<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
+					<a href="#" class="topbar-social-item fab fa-facebook-f"></a>
+					<a href="#" class="topbar-social-item fab fa-instagram"></a>
+					<a href="#" class="topbar-social-item fab fa-twitter"></a>
 				</div>
 
 				<span class="topbar-child1">
@@ -64,7 +65,7 @@
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						toko_online@example.com
+						tokoonline@gmail.com
 					</span>
 
 					<div class="topbar-language rs1-select2">
@@ -94,7 +95,7 @@
 							</li>
 
 							<li class="sale-noti">
-								<a href="<?= base_url('produk') ?>">Sale</a>
+								<a href="<?= base_url('sale') ?>">Sale</a>
 							</li>
 
 							<li>
@@ -114,20 +115,58 @@
 
 				<!-- Header Icon -->
 				<div class="header-icons">
-					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="<?= get_user_image(); ?>" class="header-icon1 img-profile rounded-circle" alt="ICON">
-					</a>
-					<div class="name_user ml-2">
-						<a href="<?php echo site_url('customer'); ?>" class="d-block"><?php echo get_user_name(); ?></a>
-					</div>
+					<!-- Topbar Navbar -->
+					<ul class="navbar-nav mr-4">
+						<div class="topbar-divider d-none d-sm-block"></div>
 
-					<!-- <span class="linedivide1"></span> -->
+						<!-- Nav Item - User Information -->
+						<li class="nav-item dropdown no-arrow">
+							<button class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="mr-2 d-none d-lg-inline text-gray-600">Account</span>
+							</button>
+							<!-- Dropdown - User Information -->
+							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+								<?php if (is_login() && is_customer()) : ?>
+									<a class="dropdown-item" href="<?= base_url('customer') ?>">
+										<i class="fa fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+										My Dashboard
+									</a>
+									<a class="dropdown-item" href="<?= base_url('profile') ?>">
+										<i class="fa fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i>
+										Profile
+									</a>
+									<a class="dropdown-item" href="<?= base_url('order') ?>">
+										<i class="fa fa-receipt fa-sm fa-fw mr-2 text-gray-400"></i>
+										My Order
+									</a>
+									<a class="dropdown-item" href="<?= base_url('payments') ?>">
+										<i class="fa fa-file-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+										My Payments
+									</a>
+									<a class="dropdown-item" href="<?= base_url('payments/confirm') ?>">
+										<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+										Payment Confirmation
+									</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+										<i class="fa fa-power-off fa-sm fa-fw mr-2"></i>
+										Logout
+									</a>
+								<?php else : ?>
+									<a class="dropdown-item" href="<?= base_url('auth/login') ?>">
+										Login
+									</a>
+									<a class="dropdown-item" href="<?= base_url('auth/register') ?>">
+										Register
+									</a>
+								<?php endif; ?>
+							</div>
+						</li>
 
-					<div class="ml-2 mr-2">|</div>
+					</ul>
 
-					<a class="logout text-danger mr-3" href="<?php echo site_url('auth/logout'); ?>">Log Out</a>
-
-
+					</nav>
+					<!-- End of Topbar -->
 
 					<div class="header-wrapicon2">
 
@@ -280,3 +319,23 @@
 			</nav>
 		</div>
 	</header>
+
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+					<a class="btn btn-primary" href="<?= base_url('auth/logout') ?>">Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
