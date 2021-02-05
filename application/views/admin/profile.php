@@ -7,7 +7,7 @@
 			<div class="card-wrapper">
 				<div class="card">
 					<div class="card-header">
-						<h3 class="mb-0">Identitas</h3>
+						<h3 class="mb-0">Identity</h3>
 						<?php if ($flash) : ?>
 							<span class="float-right text-success font-weight-bold" style="margin-top: -30px">
 								<?php echo $flash; ?>
@@ -19,14 +19,14 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label class="form-control-label" for="name">Nama:</label>
+									<label class="form-control-label" for="name">Name :</label>
 									<input type="text" name="name" value="<?php echo set_value('name', get_admin_name()); ?>" class="form-control" id="name" minlength="4" maxlength="255" required>
 									<?php echo form_error('name'); ?>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label class="form-control-label" for="email">Email:</label>
+									<label class="form-control-label" for="email">Email :</label>
 									<input type="email" name="email" value="<?php echo set_value('email', $user->email); ?>" class="form-control" id="email" minlength="10" maxlength="255" required>
 									<?php echo form_error('email'); ?>
 								</div>
@@ -38,7 +38,7 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label class="form-control-label" for="username">Username:</label>
+									<label class="form-control-label" for="username">Username :</label>
 									<input type="text" name="username" value="<?php echo set_value('username', $user->username); ?>" class="form-control" id="username" minlength="4" maxlength="16" required>
 									<?php echo form_error('username'); ?>
 								</div>
@@ -46,9 +46,9 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label class="form-control-label" for="password">Password:</label>
+									<label class="form-control-label" for="password">Password :</label>
 									<input type="password" name="password" value="" class="form-control" id="password" minlength="4" maxlength="100">
-									<p class="text-muted"><small>Kosongkan password jika tidak ingin mengganti</small></p>
+									<p class="text-muted"><small>Leave blank if not any change</small></p>
 									<?php echo form_error('password'); ?>
 								</div>
 							</div>
@@ -63,7 +63,7 @@
 
 			<div class="card">
 				<div class="card-body  d-none d-md-block">
-					<input type="submit" class="btn btn-primary float-right" value="Simpan">
+					<input type="submit" class="btn btn-primary float-right" value="Save">
 				</div>
 			</div>
 
@@ -96,7 +96,7 @@
 
 			<div class="card">
 				<div class="card-body d-block d-sm-none">
-					<input type="submit" class="btn btn-primary float-right" value="Simpan">
+					<input type="submit" class="btn btn-primary float-right" value="Save">
 				</div>
 			</div>
 
