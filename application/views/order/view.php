@@ -33,7 +33,7 @@
 										<td><b>#<?php echo $data->order_number; ?></b></td>
 									</tr>
 									<tr>
-										<td>Tanggal</td>
+										<td>Date order</td>
 										<td><b><?php echo get_formatted_date($data->order_date); ?></b></td>
 									</tr>
 									<tr>
@@ -41,12 +41,12 @@
 										<td><b><?php echo $data->total_items; ?></b></td>
 									</tr>
 									<tr>
-										<td>Harga</td>
+										<td>Price</td>
 										<td><b>Rp <?php echo format_rupiah($data->total_price); ?></b></td>
 									</tr>
 									<tr>
-										<td>Metode pembayaran</td>
-										<td><b><?php echo ($data->payment_method == 1) ? 'Transfer bank' : 'Bayar ditempat'; ?></b></td>
+										<td>Payment by</td>
+										<td><b><?php echo ($data->payment_method == 1) ? 'Bank Transfer' : 'Cash on Delivery'; ?></b></td>
 									</tr>
 									<tr>
 										<td>Status</td>
@@ -59,15 +59,15 @@
 
 					<div class="card card-primary">
 						<div class="card-header">
-							<h5 class="card-heading">Barang dalam pesanan</h5>
+							<h5 class="card-heading">Items</h5>
 						</div>
 						<div class="card-body p-0">
 							<table class="table table-hover table-condensed">
 								<tr>
 									<th scope="col"></th>
-									<th scope="col">Produk</th>
-									<th scope="col">Jumlah beli</th>
-									<th scope="col">Harga satuan</th>
+									<th scope="col">Product</th>
+									<th scope="col">Total order</th>
+									<th scope="col">Price /item</th>
 								</tr>
 								<?php foreach ($items as $item) : ?>
 									<tr>
@@ -88,24 +88,24 @@
 				<div class="col-md-4">
 					<div class="card card-primary">
 						<div class="card-header">
-							<h5 class="card-heading">Data Penerima</h5>
+							<h5 class="card-heading">Data Receiver</h5>
 						</div>
 						<div class="card-body p-0">
 							<table class="table table-hover table-striped table-hover">
 								<tr>
-									<td>Nama</td>
+									<td>Name</td>
 									<td><b><?php echo $delivery_data->customer->name; ?></b></td>
 								</tr>
 								<tr>
-									<td>No. HP</td>
+									<td>No. Mobile</td>
 									<td><b><?php echo $delivery_data->customer->phone_number; ?></b></td>
 								</tr>
 								<tr>
-									<td>Alamat</td>
+									<td>Address</td>
 									<td><b><?php echo $delivery_data->customer->address; ?></b></td>
 								</tr>
 								<tr>
-									<td>Catatan</td>
+									<td>Note</td>
 									<td><b><?php echo $delivery_data->note; ?></b></td>
 								</tr>
 							</table>
@@ -114,11 +114,11 @@
 
 					<div class="card card-primary">
 						<div class="card-header">
-							<h5 class="card-heading">Pembayaran</h5>
+							<h5 class="card-heading">Payment</h5>
 						</div>
 						<div class="card-body p-0">
 							<?php if ($data->payment_price == NULL) : ?>
-								<div class="alert alert-info m-2">Tidak ada data pembayaran.</div>
+								<div class="alert alert-danger m-2">No payments found.</div>
 							<?php else : ?>
 								<table class="table table-hover table-striped table-hover">
 									<tr>
@@ -126,23 +126,23 @@
 										<td><b>Rp <?php echo format_rupiah($data->payment_price); ?></b></td>
 									</tr>
 									<tr>
-										<td>Tanggal</td>
+										<td>Date</td>
 										<td><b><?php echo get_formatted_date($data->payment_date); ?></b></td>
 									</tr>
 									<tr>
 										<td>Status</td>
 										<td><b>
 												<?php if ($data->payment_status == 1) : ?>
-													<span class="badge badge-warning text-white">Menunggu konfirmasi</span>
+													<span class="badge badge-warning text-white">Waiting Confirmation</span>
 												<?php elseif ($data->payment_method == 2) : ?>
-													<span class="badge badge-success text-white">Dikonfirmasi</span>
+													<span class="badge badge-success text-white">Confirmated</span>
 												<?php elseif ($data->payment_method == 3) : ?>
-													<span class="badge badge-danger text-white">Gagal</span>
+													<span class="badge badge-danger text-white">Failed</span>
 												<?php endif; ?>
 											</b></td>
 									</tr>
 									<tr>
-										<td>Transfer ke</td>
+										<td>Transfer to</td>
 										<td><b>
 												<?php
 												$bank_data = json_decode($data->payment_data);
@@ -156,7 +156,7 @@
 											</b></td>
 									</tr>
 									<tr>
-										<td>Transfer dari</td>
+										<td>Transfer from</td>
 										<td><b><?php echo $transfer_from->bank; ?> a.n <?php echo $transfer_from->name; ?> (<?php echo $transfer_from->number; ?>)</b></td>
 									</tr>
 								</table>
@@ -166,37 +166,37 @@
 
 					<div class="card card-primary">
 						<div class="card-header">
-							<h5 class="card-heading">Tindakan</h5>
+							<h5 class="card-heading">Actions</h5>
 						</div>
 						<div class="card-body">
 							<div class="text-center actionRow">
 								<?php if ($data->payment_method == 1) : ?>
 									<?php if ($data->order_status == 1) : ?>
-										<p>Order menunggu pembayaran</p>
-										<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal"><i class="fa fa-times"></i> Batalkan</a>
+										<p>Order waiting for payments</p>
+										<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal"><i class="fa fa-times"></i> Cancel</a>
 									<?php elseif ($data->order_status == 5) : ?>
-										<p>Order dibatalkan</p>
-										<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i> Hapus</a>
+										<p>Order cancelled</p>
+										<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i> Delete</a>
 									<?php elseif ($data->order_status == 2) : ?>
-										<p>Order dalam proses</p>
+										<p>Order in process</p>
 									<?php elseif ($data->order_status == 3) : ?>
-										<p>Dalam pengiriman</p>
+										<p>Shipping</p>
 									<?php elseif ($data->order_status == 4) : ?>
-										<p>Order selesai</p>
-										<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i> Hapus</a>
+										<p>Completed</p>
+										<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i> Delete</a>
 									<?php endif; ?>
 								<?php elseif ($data->payment_method == 2) : ?>
 									<?php if ($data->order_status == 1) : ?>
-										<p>Order dalam proses</p>
-										<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal"><i class="fa fa-times"></i> Batalkan</a>
+										<p>Order in process</p>
+										<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal"><i class="fa fa-times"></i> Cancel</a>
 									<?php elseif ($data->order_status == 4) : ?>
-										<p>Order dibatalkan</p>
-										<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i> Hapus</a>
+										<p>Order cancelled</p>
+										<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i> Delete</a>
 									<?php elseif ($data->order_status == 2) : ?>
-										<p>Dalam pengiriman</p>
+										<p>Shipping</p>
 									<?php elseif ($data->order_status == 3) : ?>
-										<p>Order selesai</p>
-										<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i> Hapus</a>
+										<p>Completed</p>
+										<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i> Delete</a>
 									<?php endif; ?>
 								<?php endif; ?>
 							</div>
@@ -210,20 +210,20 @@
 	</div>
 
 	<?php if (($data->payment_method == 1 && $data->order_status == 1) || ($data->payment_method == 2 && $data->order_status == 1)) : ?>
-		<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
+		<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="cancelModalLabel">Batalkan Order</h5>
+						<h5 class="modal-title" id="cancelModalLabel">Cancel Order</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
-						<p>Anda yakin ingin membatalkan order? Silahkan hubungi kami untuk pengembalian dana.</p>
+						<p>Are you sure cancel this order ? Please contact us to refund.</p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger cancel-btn">Batalkan</button>
+						<button type="button" class="btn btn-danger cancel-btn">Cancel</button>
 					</div>
 				</div>
 			</div>
@@ -233,7 +233,7 @@
 			$('.cancel-btn').click(function(e) {
 				e.preventDefault();
 
-				$(this).html('<i class="fa fa-spin fa-spinner"></i> Membatalkan...');
+				$(this).html('<i class="fa fa-spin fa-spinner"></i> Cancelling...');
 
 				$.ajax({
 					method: 'POST',
@@ -244,11 +244,11 @@
 					context: this,
 					success: function(res) {
 						if (res.code == 200) {
-							$(this).html('Batalkan');
+							$(this).html('Cancel');
 
 							if (res.success) {
-								$('.statusField').text('Dibatalkan');
-								$('.actionRow').html('Order dibatalkan');
+								$('.statusField').text('Cancelled');
+								$('.actionRow').html('Order cancelled');
 							} else if (res.error) {
 								$('.actionRow').html(res.message);
 							}
@@ -264,8 +264,8 @@
 	<?php endif; ?>
 
 	<?php if (($data->payment_method == 1 && ($data->order_status == 5 || $data->order_status == 4)) || ($data->payment_method == 2 && ($data->order_status == 4 || $data->order_status == 3))) : ?>
-		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
+		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="deletelModalLabel">Delete Order</h5>
@@ -277,7 +277,7 @@
 						<p class="deleteText">Are you sure want to delete this order ? All records will be deleted</p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-warning delete-btn">Delete</button>
+						<button type="button" class="btn btn-danger delete-btn">Delete</button>
 					</div>
 				</div>
 			</div>
