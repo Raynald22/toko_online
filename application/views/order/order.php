@@ -9,7 +9,7 @@
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-primary">My Order</h6>
 			</div>
-			<div class="card-body" <?php echo (count($orders) > 0) ? ' p-0' : ''; ?>">
+			<div class="card-body" <?php echo (count($orders) > 0) ? ' p-0' : ''; ?>>
 				<?php if (count($orders) > 0) : ?>
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -17,23 +17,25 @@
 								<tr>
 									<th scope="col">No.</th>
 									<th scope="col">ID</th>
-									<th scope="col">Tanggal</th>
-									<th scope="col">Jumlah Pesanan</th>
-									<th scope="col">Total Pesanan</th>
-									<th scope="col">Pembayaran</th>
+									<th scope="col">Date</th>
+									<th scope="col">Total Items</th>
+									<th scope="col">Total</th>
+									<th scope="col">Payment by</th>
 									<th scope="col">Status</th>
 								</tr>
 							</thead>
 
 							<tbody>
-								<?php foreach ($orders as $order) : ?>
+								<?php
+								$no = 1;
+								foreach ($orders as $order) : ?>
 									<tr>
-										<td><?php echo $order->id; ?></td>
+										<td><?php echo $no++ ?></td>
 										<td><?php echo anchor('order/view/' . $order->id, '#' . $order->order_number); ?></td>
 										<td><?php echo get_formatted_date($order->order_date); ?></td>
-										<td><?php echo $order->total_items; ?> barang</td>
+										<td class="text-center"><?php echo $order->total_items; ?> Items</td>
 										<td>Rp <?php echo format_rupiah($order->total_price); ?></td>
-										<td><?php echo ($order->payment_method == 1) ? 'Transfer bank' : 'Bayar ditempat'; ?></td>
+										<td><?php echo ($order->payment_method == 1) ? 'Bank Transfer' : 'Cash on Delivery'; ?></td>
 										<td><?php echo get_order_status($order->order_status, $order->payment_method); ?></td>
 									</tr>
 								<?php endforeach; ?>
@@ -43,8 +45,8 @@
 				<?php else : ?>
 					<div class="row">
 						<div class="col-md-6">
-							<div class="alert alert-info">
-								Belum ada data order.
+							<div class="alert alert-primary">
+								No records found.
 							</div>
 						</div>
 					</div>
