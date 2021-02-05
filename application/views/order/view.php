@@ -5,13 +5,13 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1>Order #<?php echo $data->order_number; ?></h1>
+						<h1>Order <span class="text-primary">#<?php echo $data->order_number; ?></span></h1>
 					</div>
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
 							<li class="breadcrumb-item"><?php echo anchor('', 'Home'); ?></li>
 							<li class="breadcrumb-item active"><?php echo anchor('/order', 'Order'); ?></li>
-							<li class="breadcrumb-item active">#<?php echo $data->order_number; ?></li>
+							<li class="breadcrumb-item active"><span>#<?php echo $data->order_number; ?></span></li>
 						</ol>
 					</div>
 				</div>
@@ -20,10 +20,10 @@
 
 		<section class="content">
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-8 pl-4">
 					<div class="card card-primary">
-						<div class=" card-header py-3">
-							<h5 class="card-heading m-0 font-weight-bold text-primary">Data Order</h5>
+						<div class=" card-header">
+							<h5 class="card-heading m-0">Data Order</h5>
 						</div>
 						<div class="card-body p-0 table-responsive">
 							<table class="table table-hover" width="100%" cellspacing="0">
@@ -57,7 +57,7 @@
 						</div>
 					</div>
 
-					<div class="card card-primary">
+					<div class="card card-primary mt-4">
 						<div class="card-header">
 							<h5 class="card-heading">Items</h5>
 						</div>
@@ -85,7 +85,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-4 pr-3">
 					<div class="card card-primary">
 						<div class="card-header">
 							<h5 class="card-heading">Data Receiver</h5>
@@ -112,7 +112,7 @@
 						</div>
 					</div>
 
-					<div class="card card-primary">
+					<div class="card card-primary mt-3">
 						<div class="card-header">
 							<h5 class="card-heading">Payment</h5>
 						</div>
@@ -164,7 +164,7 @@
 						</div>
 					</div>
 
-					<div class="card card-primary">
+					<div class="card card-primary mt-3">
 						<div class="card-header">
 							<h5 class="card-heading">Actions</h5>
 						</div>

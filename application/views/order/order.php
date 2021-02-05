@@ -36,7 +36,9 @@
 										<td class="text-center"><?php echo $order->total_items; ?> Items</td>
 										<td>Rp <?php echo format_rupiah($order->total_price); ?></td>
 										<td><?php echo ($order->payment_method == 1) ? 'Bank Transfer' : 'Cash on Delivery'; ?></td>
-										<td><?php echo get_order_status($order->order_status, $order->payment_method); ?></td>
+										<td>
+											<?php echo get_order_status($order->order_status, $order->payment_method); ?>
+										</td>
 									</tr>
 								<?php endforeach; ?>
 							</tbody>
