@@ -38,9 +38,10 @@ class Customers extends CI_Controller
 			$customer['orders'] = $this->order->order_by($id);
 			$customer['payments'] = $this->payment->payment_by($id);
 
-			$this->load->view('header', $params);
-			$this->load->view('customers/view', $customer);
-			$this->load->view('footer');
+			$this->load->view('templates/admin_header');
+			$this->load->view('templates/admin_sidebar', $params);
+			$this->load->view('admin/detail_customer', $customer);
+			$this->load->view('templates/admin_footer');
 		} else {
 			show_404();
 		}
