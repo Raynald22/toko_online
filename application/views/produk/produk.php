@@ -231,9 +231,9 @@
 						var totalItem = res.total_item;
 
 						$('.cart-item-total').text(totalItem);
-						toastr.info('Item ditambahkan dalam keranjang');
+						toastr.info('Item added to cart');
 					} else {
-						console.log('Terjadi kesalahan');
+						console.log('Something Wrong');
 					}
 				}
 			});
