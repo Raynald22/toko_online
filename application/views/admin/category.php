@@ -1,5 +1,26 @@
+<!-- Header -->
+<div class="header bg-primary pb-6">
+	<div class="container-fluid">
+		<div class="header-body">
+			<div class="row align-items-center py-4">
+				<div class="col-lg-6 col-7">
+					<h6 class="h2 text-white d-inline-block mb-0">Manage Categories</h6>
+				</div>
+				<div class="col-lg-6 col-5 text-right">
+					<nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+						<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+							<li class="breadcrumb-item"><a href="<?php echo site_url('admin'); ?>"><i class="fas fa-home"></i></a></li>
+							<li class="breadcrumb-item active" aria-current="page">Categories</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="container">
-	<a href="#" data-target="#addModal" data-toggle="modal" class="btn btn-sm btn-neutral btn-primary mb-3"><i class="fas fa-plus"></i> Add Category</a>
+	<a href="#" data-target="#addModal" data-toggle="modal" class="btn btn-sm btn-primary mb-3 mt-3 text-right"><i class="fas fa-plus"></i> Add Category</a>
 </div>
 <!-- Page content -->
 <div class="container-fluid">
@@ -35,8 +56,8 @@
 		<div class="modal-dialog modal- modal-dialog modal-md" role="document">
 			<div class="modal-content">
 				<div class="modal-body p-0">
-					<div class="card bg-secondary border-0 mb-0">
-						<div class="card-header bg-transparent">
+					<div class="card border-0 mb-0">
+						<div class="card-header">
 							<h3 class="card-heading text-center mt-2">Add Categories</h3>
 						</div>
 						<div class="card-body px-lg-5 py-lg-5">
@@ -45,9 +66,9 @@
 								<div class="form-group mb-3">
 									<div class="input-group input-group-merge input-group-alternative">
 										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="ni ni-box-2"></i></span>
+											<span class="input-group-text"><i class="fas fa-box"></i></span>
 										</div>
-										<input name="name" class="form-control" placeholder="Nama " type="text" minlength="4" maxlength="255" required>
+										<input name="name" class="form-control" placeholder="Name " type="text" minlength="4" maxlength="255" required>
 									</div>
 									<div class="text-danger err name-error"></div>
 								</div>
@@ -95,8 +116,8 @@
 		<div class="modal-dialog modal- modal-dialog modal-md" role="document">
 			<div class="modal-content">
 				<div class="modal-body p-0">
-					<div class="card bg-secondary border-0 mb-0">
-						<div class="card-header bg-transparent">
+					<div class="card border-0 mb-0">
+						<div class="card-header">
 							<h3 class="card-heading text-center mt-2">Edit Category</h3>
 						</div>
 						<div class="card-body px-lg-5 py-lg-5">
@@ -107,9 +128,9 @@
 								<div class="form-group mb-3">
 									<div class="input-group input-group-merge input-group-alternative">
 										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="ni ni-box-2"></i></span>
+											<span class="input-group-text"><i class="fas fa-box"></i></span>
 										</div>
-										<input name="name" class="form-control edit-name" placeholder="Nama paket" type="text" minlength="4" maxlength="100" required>
+										<input name="name" class="form-control edit-name" placeholder="Name" type="text" minlength="4" maxlength="100" required>
 									</div>
 									<div class="text-danger err name-error"></div>
 								</div>
