@@ -1,11 +1,31 @@
+<!-- Header -->
+<div class="header bg-primary pb-6">
+	<div class="container-fluid">
+		<div class="header-body">
+			<div class="row align-items-center py-4">
+				<div class="col-lg-6 col-7">
+					<h6 class="h2 text-white d-inline-block mb-0">Manage Customers</h6>
+				</div>
+				<div class="col-lg-6 col-5 text-right">
+					<nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+						<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+							<li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+							<li class="breadcrumb-item active" aria-current="page">Customers</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <!-- Page content -->
-<div class="container-fluid mt--6">
+<div class="container-fluid p-2">
 	<div class="row">
 		<div class="col">
 			<div class="card">
 				<!-- Card header -->
 				<div class="card-header">
-					<h3 class="mb-0">Pelanggan</h3>
+					<h3 class="mb-0">Customers</h3>
 				</div>
 
 				<div class="card-body p-0">
@@ -14,11 +34,11 @@
 							<thead class="thead-light">
 								<tr>
 									<th scope="col">ID</th>
-									<th scope="col">Foto</th>
-									<th scope="col">Nama</th>
+									<th scope="col">Image</th>
+									<th scope="col">Name</th>
 									<th scope="col">Email</th>
-									<th scope="col">No. HP</th>
-									<th scope="col">Alamat</th>
+									<th scope="col">No. Mobile</th>
+									<th scope="col">Address</th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
@@ -34,7 +54,7 @@
 		<div class="modal-dialog modal-modal-dialog-centered modal-" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h6 class="modal-title" id="modal-title-default">Hapus Pelanggan?</h6>
+					<h6 class="modal-title" id="modal-title-default">Delete Customer ?</h6>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
@@ -44,11 +64,11 @@
 					<input type="hidden" name="id" value="" class="deleteID">
 
 					<div class="modal-body">
-						<p>Yakin ingin pelanggan ini? Semua data seperti data profil, order dan pembayaran juga akan dihapus.</p>
+						<p>Are you sure wants to delete this customer ? All records will be deleted.</p>
 					</div>
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-danger btn-delete">Hapus</button>
-						<button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Batal</button>
+						<button type="submit" class="btn btn-danger btn-delete">Delete</button>
+						<button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Cancel</button>
 					</div>
 				</form>
 			</div>
@@ -76,7 +96,7 @@
 				var id = $('.deleteID').val();
 				var btn = $('.btn-delete');
 
-				btn.html('<i class="fa fa-spin fa-spinner"></i> Menghapus...');
+				btn.html('<i class="fa fa-spin fa-spinner"></i> Deleting...');
 
 				$.ajax({
 					method: 'POST',
@@ -86,7 +106,7 @@
 					},
 					success: function(res) {
 						if (res.code == 204) {
-							btn.html('<i class="fa fa-check"></i> Terhapus!');
+							btn.html('<i class="fa fa-check"></i> Deleted!');
 
 							setTimeout(() => {
 								$('#deleteModal').modal('hide');
@@ -135,12 +155,12 @@
 					}
 				],
 				"language": {
-					"search": "Cari:",
-					"lengthMenu": "Menampilkan _MENU_ data",
-					"info": "Menampilkan _START_ sampai _END_ data dari _TOTAL_ data",
-					"infoEmpty": "Tidak ada data yang ditampilkan",
+					"search": "Search :",
+					"lengthMenu": "Showing _MENU_ data",
+					"info": "Showing _START_ from _END_ data ",
+					"infoEmpty": "No records found.",
 					"infoFiltered": "(dari total _MAX_ data)",
-					"zeroRecords": "Tidak ada hasil pencarian ditemukan",
+					"zeroRecords": "No records found.",
 					"paginate": {
 						"first": "&laquo;",
 						"last": "&raquo;",
