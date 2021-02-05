@@ -26,7 +26,7 @@
  			<div class="card">
  				<!-- Card header -->
  				<div class="card-header border-0">
- 					<h3 class="mb-0">Coupon</h3>
+ 					<h3 class="mb-0">Coupons</h3>
  				</div>
  				<div class="text-right">
  					<a href="#" data-target="#addModal" data-toggle="modal" class="btn btn-sm btn-primary m-2"><i class="fas fa-plus"></i> Add Coupons</a>
