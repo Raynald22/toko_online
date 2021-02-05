@@ -3,7 +3,6 @@
 
 	<!-- Page Heading -->
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
-		<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
 	</div>
 
 	<!-- Content Row -->
@@ -20,7 +19,7 @@
 							<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_products; ?></div>
 						</div>
 						<div class="col-auto">
-							<i class="fas fa-calendar fa-2x text-gray-300"></i>
+							<i class="fas fa-box fa-2x text-gray-300"></i>
 						</div>
 					</div>
 				</div>
@@ -34,7 +33,7 @@
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
 							<div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-								Pelanggan</div>
+								Customer</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_customers; ?></div>
 						</div>
 						<div class="col-auto">
@@ -52,7 +51,7 @@
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
 							<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-								Pesanan</div>
+								Order</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_order; ?></div>
 						</div>
 						<div class="col-auto">
@@ -70,7 +69,7 @@
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
 							<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-								Pendapatan</div>
+								Income</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800">Rp <?php echo format_rupiah($total_income); ?></div>
 						</div>
 						<div class="col-auto">
@@ -107,7 +106,7 @@
 										</p>
 									</div>
 									<div class="col-auto">
-										<a href="<?php echo site_url('admin/customers/view/' . $customer->id); ?>" class="btn btn-sm btn-primary">Profil</a>
+										<!-- <a href="<?php echo site_url('admin/customers/view/' . $customer->id); ?>" class="btn btn-sm btn-primary">Profil</a> -->
 									</div>
 								</div>
 							</li>
