@@ -1,18 +1,30 @@
 <section class="cart bgwhite p-t-70 p-b-100">
+
+	<!-- Header -->
+	<div class="header bg-primary pb-6">
+		<div class="container-fluid">
+			<div class="header-body">
+				<div class="row align-items-center py-4">
+					<div class="col-lg-6 col-7">
+						<h6 class="h2 text-white d-inline-block mb-0">Manage Product</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
-
 		<!-- Page Heading -->
 		<!-- Header -->
 		<div class="header pb-6">
 			<div class="container-fluid">
 				<div class="header-body">
-					<div class="row align-items-center pb-4">
+					<div class="row align-items-center pb-2">
 						<div class="col-lg-6">
 							<h6 class="h2 text-white d-inline-block mb-0"></h6>
 						</div>
-						<div class="col-lg-6 text-right">
-							<a href="<?php echo site_url('admin/products/add_new_product'); ?>" class="btn btn-sm btn-primary">Tambah</a>
+						<div class="col-lg-6 text-right pt-2">
+							<a href="<?php echo site_url('admin/products/add_new_product'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Add Product</a>
 						</div>
 					</div>
 				</div>
