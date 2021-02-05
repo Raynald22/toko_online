@@ -1,11 +1,32 @@
+<!-- Header -->
+<div class="header bg-primary pb-6">
+	<div class="container-fluid">
+		<div class="header-body">
+			<div class="row align-items-center py-4">
+				<div class="col-lg-6 col-7">
+					<h6 class="h2 text-white d-inline-block mb-0">Order Customer</h6>
+				</div>
+				<div class="col-lg-6 col-5 text-right">
+					<nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+						<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+							<li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+							<li class="breadcrumb-item active"><a href="<?= base_url('admin/payments') ?>">Payments</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Detail Payment</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <!-- Page content -->
-<div class="container-fluid mt--6">
+<div class="container-fluid p-2">
 	<div class="row">
 		<div class="col-md-8">
 			<div class="card-wrapper">
 				<div class="card">
 					<div class="card-header">
-						<h3 class="mb-0">Pembayaran #<?php echo $payment->order_number; ?></h3>
+						<h3 class="mb-0">Payments #<?php echo $payment->order_number; ?></h3>
 						<?php if ($flash) : ?>
 							<span class="float-right text-success font-weight-bold" style="margin-top: -30px;"><?php echo $flash; ?></span>
 						<?php endif; ?>
@@ -17,23 +38,23 @@
 								<td><b>Rp <?php echo format_rupiah($payment->payment_price); ?></b></td>
 							</tr>
 							<tr>
-								<td>Tanggal</td>
+								<td>Date</td>
 								<td><b><?php echo get_formatted_date($payment->payment_date); ?></b></td>
 							</tr>
 							<tr>
 								<td>Status</td>
 								<td><b>
 										<?php if ($payment->payment_status == 1) : ?>
-											<span class="badge badge-info">Menunggu konfirmasi</span>
+											<span class="badge badge-info">Waiting confirmation</span>
 										<?php elseif ($payment->payment_status == 2) : ?>
-											<span class="badge badge-success">Dikonfirmasi</span>
+											<span class="badge badge-success">Confirmated</span>
 										<?php elseif ($payment->payment_status == 3) : ?>
-											<span class="badge badge-danger">Gagal</span>
+											<span class="badge badge-danger">Failed confirmation</span>
 										<?php endif; ?>
 									</b></td>
 							</tr>
 							<tr>
-								<td>Transfer ke</td>
+								<td>Transfer to</td>
 								<td>
 									<div style="white-space: initial;"><b>
 											<?php
@@ -49,7 +70,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td>Transfer dari</td>
+								<td>Transfer from</td>
 								<td>
 									<div style="white-space: initial;">
 										<b><?php echo $transfer_from->bank; ?> a.n <?php echo $transfer_from->name; ?> (<?php echo $transfer_from->number; ?>)</b>
@@ -67,7 +88,7 @@
 		<div class="col-md-4">
 			<div class="card card-primary">
 				<div class="card-header">
-					<h3 class="mb-0">Bukti Pembayaran</h3>
+					<h3 class="mb-0">Proof of payment</h3>
 				</div>
 				<div class="card-body p-0">
 					<img alt="Pembayaran Order #<?php echo $payment->order_number; ?>" class="img img-fluid" src="<?php echo base_url('assets/uploads/payments/' . $payment->picture_name); ?>">
@@ -82,10 +103,10 @@
 							<div class="col-md-9">
 								<select class="form-control" name="action">
 									<?php if ($payment->payment_status == 1) : ?>
-										<option value="1">Konfirmasi Pembayaran</option>
-										<option value="2">Pembayaran Tidak Ada</option>
+										<option value="1">Confirm Payment</option>
+										<option value="2">No payment founds</option>
 									<?php else : ?>
-										<option value="4" readonly>Tidak ada pilihan</option>
+										<option value="4" readonly>No choice</option>
 									<?php endif; ?>
 								</select>
 							</div>
