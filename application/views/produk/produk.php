@@ -28,7 +28,7 @@
 							</li>
 
 							<li class="p-t-4">
-								<a href="<?= base_url('kategori/sepatu') ?>" class="s-text13">
+								<a href="<?= base_url('produk/shoes') ?>" class="s-text13">
 									Shoes
 								</a>
 							</li>

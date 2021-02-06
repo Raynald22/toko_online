@@ -26,4 +26,16 @@ class Produk extends CI_Controller
 		$this->load->view('produk/produk', $data); //memanggil view produk.php
 		$this->load->view('templates/produk_footer'); //memanggil view footer.php
 	}
+
+	// Produk Index
+	public function shoes()
+	{
+		$data['title'] = 'Shoes';
+		$data['products'] = $this->product->get_all_products();
+		$params['shoes'] = $this->product->get_all_shoes();
+
+		$this->load->view('templates/header', $data); //memanggil view header.php
+		$this->load->view('kategori/sepatu', $data, $params); //memanggil view produk.php
+		$this->load->view('templates/produk_footer'); //memanggil view footer.php
+	}
 }

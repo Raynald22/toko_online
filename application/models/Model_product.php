@@ -24,6 +24,11 @@ class Model_product extends CI_Model
 		return $data;
 	}
 
+	public function get_all_shoes($current, $category)
+	{
+		return $this->db->where(array('id !=' => $current, 'category_id' => $category))->limit(4)->get('products')->result();
+	}
+
 	public function is_product_exist($id, $sku)
 	{
 		return ($this->db->where(array('id' => $id, 'sku' => $sku))->get('products')->num_rows() > 0) ? TRUE : FALSE;

@@ -72,7 +72,7 @@ class Login extends CI_Controller
 					} else {
 						$role = $this->login->get_role(); //memeriksa role_id
 
-						$redir_to = ($role == 1) ? 'admin' : 'dashboard'; //hika 1 akan di redirect ke admin dan jika 2 akan di redirect ke index
+						$redir_to = ($role == 1) ? 'admin' : 'dashboard'; //jika 1 akan di redirect ke admin dan jika 2 akan di redirect ke index
 					}
 
 					if ($remember_me == 1) {

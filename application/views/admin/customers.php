@@ -150,7 +150,7 @@
 							var url = window.location.href.split('?')[0].replace('#', '');
 							url = url + '/edit/' + row.id;
 
-							return '<div class="text-right"><a href="#" data-id="' + row.id + '" class="btn btn-danger btn-sm btnDelete"><i class="fa fa-trash"></i></a></div>';
+							return '<div class="text-right"><a href="#" data-id="' + row.id + '"class="btn btn-danger btn-sm btnDelete"><i class="fa fa-trash"></i></a></div>';
 						}
 					}
 				],
@@ -159,7 +159,7 @@
 					"lengthMenu": "Showing _MENU_ data",
 					"info": "Showing _START_ from _END_ data ",
 					"infoEmpty": "No records found.",
-					"infoFiltered": "(dari total _MAX_ data)",
+					"infoFiltered": "(from total _MAX_ data)",
 					"zeroRecords": "No records found.",
 					"paginate": {
 						"first": "&laquo;",

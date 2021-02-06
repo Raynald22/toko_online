@@ -20,6 +20,7 @@ class Model_product extends CI_Model
 		return $products;
 	}
 
+
 	public function search_products($query, $limit, $start)
 	{
 		$products = $this->db->like('name', $query)->or_like('description', $query)->get('products', $limit, $start)->result();
